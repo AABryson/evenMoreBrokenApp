@@ -1,0 +1,26 @@
+{
+  "name": "bankly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "_comment": "Changed seed.  Originally began by dropping both bankly and bankly_test database.  They need to be created first",
+    "seed": "createdb bankly && psql bankly < data.sql && createdb bankly_test && psql bankly_test < data.sql",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^8.6.0",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.0",
+    "pg": "^8.11.5",
+    "supertest": "^3.4.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
