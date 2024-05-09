@@ -7,4 +7,3 @@
 -BUG #4: The 'authenticate' method in user.js in the models folder fails to delete the password in the 'return user' line which looks like a security risk.
 
 BUG #5: The method 'getAll' in user.js in models passess username and password but doesn't require either.
-
