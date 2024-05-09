@@ -6,7 +6,7 @@ const ExpressError = require("./helpers/expressError");
 
 
 app.use(express.json());
-
+//#################################
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 
@@ -35,4 +35,4 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-module.exports = app;
+// module.exports = app;
