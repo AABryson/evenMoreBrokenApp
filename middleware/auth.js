@@ -7,15 +7,13 @@
 
 const jwt = require('jsonwebtoken');
 
-//#???????????????????I don't see
+//#???????????????????This doesn't appear to be used.
 const { SECRET_KEY } = require('../config');
 
 /** Authorization Middleware: Requires user is logged in. */
 
-//#!!!!!!!!!!!looks fine execpt for curr_username
 function requireLogin(req, res, next) {
   try {
-//???????????????????not sure about curr_username; in authenticate model, returns user which just uses username; but in authUser below, it does return req.curr_username;
     if (req.curr_username) {
       return next();
     } else {
@@ -31,8 +29,7 @@ function requireLogin(req, res, next) {
 //#????????????????????????
 function requireAdmin(req, res, next) {
   try {
-    //#I think this is a bug.  It should also check if person is logged in.
-    //BUG 3: it should also verify whether the user is also logged in.  Currently, it only checks to see if user has isAdmin property
+    //BUG 3: This should also verify whether the user is logged in.  Currently, it only checks to see if user has isAdmin property
     //may not be a bug since when used on patch route has requireAdmin and requireLogin; also when used on delete route has autUser
     if (req.curr_admin) {
       return next();
@@ -60,14 +57,15 @@ function requireAdmin(req, res, next) {
 function authUser(req, res, next) {
   try {
     const token = req.body._token || req.query._token;
-//#this should verify the token.  the fact that it doesn't explains why SECRET_KEY is not used in the code
+    //BUG 2
+//#This should verify the token.  The fact that it doesn't explains why SECRET_KEY is not used in the code.
     if (token) {
       //Fixes BUG #2...
+      //add: payload = jwt.verify(token, SECRET_KEY)  --should return the decoded payload
       
       let payload = jwt.decode(token);
       //####################################################################################
-      //##################################################################################
-      //#################################################################################
+      //#Sets the decoded payload object on req.curr_username and req.curr_admin
       req.curr_username = payload.username;
       req.curr_admin = payload.admin;
     }

@@ -52,7 +52,7 @@ class User {
    *
    * */
 
-//#verify that user is registered; this will be used directly in route; so it is the route where a person's password is first verified; after password is verified, may used requireLogin from auth.js on other routes to verify user is logged in
+//#verify that user is registered; this will be used directly in route; so it is the route where a user's password is first verified; after password is verified, may use requireLogin from auth.js on other routes to verify user is logged in
   static async authenticate(username, password) {
     const result = await db.query(
       `SELECT username,
@@ -72,8 +72,8 @@ class User {
     if (user && (await bcrypt.compare(password, user.password))) {
       //#######################################################################
       //BUG 4
-      //i THINK THIS SHOULD DELTE PASSWORD PROPERTY; would lead to 'security issue in application'; although in docstring it says return all user data if true
-      // delete user.password
+      //Should delete the password property; would lead to 'security issue in application'; although, in docstring, it says return all user data if true
+      //add: delete user.password
       return user;
     } else {
       throw new ExpressError('Cannot authenticate', 401);
@@ -109,7 +109,7 @@ class User {
    **/
 
 
-  //###################!!!!!!!!!!!!!!!!!!this looks fine.
+  //###################!!!!!!!!!!!!!!!!!!Fine
   static async get(username) {
     const result = await db.query(
       `SELECT username,
@@ -165,7 +165,7 @@ class User {
    *
    **/
 
-  //#####!!!!!!!!!!!!!!!!!!!!!!!!!!This looks okay.
+  //#####!!!!!!!!!!!!!!!!!!!!!!!!!!Fine
   static async delete(username) {
     const result = await db.query(
       //#need RETURNING so there is something in result.rows[0]

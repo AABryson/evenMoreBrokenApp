@@ -12,5 +12,5 @@ function createToken(username, admin=false) {
   return jwt.sign(payload, SECRET_KEY);
 }
 
-//#shouldn't this be exported in object????
+
 module.exports = createToken;

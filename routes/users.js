@@ -38,15 +38,15 @@ router.get('/', authUser, requireLogin, async function(req, res, next) {
  *
  */
 
-//###################Again, authUser is supposed to verify token but doesn't have jwt.verify()
-//###########!!!!!!!!!!!!!!!!Besides authUser problem, I think this is okay.
+
+//###########!!!!!!!!!!!!!!!!Besides authUser problem, fine.
 router.get('/:username', authUser, requireLogin, async function(
   req,
   res,
   next
 ) {
   try {
-//# get model returns user which stores result.rows[0]
+//#get model returns user which stores result.rows[0]
     let user = await User.get(req.params.username);
     return res.json({ user });
   } catch (err) {
@@ -105,7 +105,7 @@ router.patch('/:username', authUser, requireLogin, requireAdmin, async function(
  */
 
 
-//#############!!!!!!!!!!!!!!!!!!looks okay
+//#############!!!!!!!!!!!!!!!!!!Fine
 //#it doesn't say above they should provide a valid token?????
 router.delete('/:username', authUser, requireAdmin, async function(
   req,

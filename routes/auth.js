@@ -14,15 +14,15 @@ const createTokenForUser = require('../helpers/createToken');
  *
  */
 
-//###############!!!!!!!!!!!!!!!!!!!!Looks okay
+//###############!!!!!!!!!!!!!!!!!!!!Fine
 router.post('/register', async function(req, res, next) {
   try {
     const { username, password, first_name, last_name, email, phone } = req.body;
-//#register method executes bcrypt.hash().  then inserts user info into database
+//#register method executes bcrypt.hash(), then inserts user info into database.
 //#?????????the query returns - RETURNING username, password, first_name, last_name, email, phone`. there is no admin; however, admin = false is default;???but if exclude password, not returned?????; are defaults always returned on object?
     let user = await User.register({username, password, first_name, last_name, email, phone});
     /**delete createTokenForUser since belongs in the login route */
-    //#is the above my comment.  I think it is #################################################################
+  
     const token = createTokenForUser(username, user.admin);
     return res.status(201).json({ token });
   } catch (err) {
@@ -41,7 +41,7 @@ router.post('/register', async function(req, res, next) {
  */
 
 
-//##########!!!!!!!!!!!!!!!!This looks correct
+//##########!!!!!!!!!!!!!!!!Fine
 router.post('/login', async function(req, res, next) {
   try {
     const { username, password } = req.body;
