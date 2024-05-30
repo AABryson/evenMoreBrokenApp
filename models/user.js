@@ -52,7 +52,7 @@ class User {
    *
    * */
 
-//#verify that user is registered; this will be used directly in route; so it is the route where a user's password is first verified; after password is verified, may use requireLogin from auth.js on other routes to verify user is logged in
+//#verify that user is registered; this will be used directly in route; so it is the route where a user's password is first verified - LOGIN; after password is verified, may use requireLogin from auth.js on other routes to verify user is logged in
   static async authenticate(username, password) {
     const result = await db.query(
       `SELECT username,

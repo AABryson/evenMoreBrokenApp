@@ -3,7 +3,7 @@
 
 
 //##############################################################
-//MAY NEED TO ADD ENSURECORRECTUSERORADMIN
+//#AUTHORIZATION##########################
 
 const jwt = require('jsonwebtoken');
 
