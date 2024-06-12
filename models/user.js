@@ -168,7 +168,7 @@ class User {
   //#####!!!!!!!!!!!!!!!!!!!!!!!!!!Fine
   static async delete(username) {
     const result = await db.query(
-      //#need RETURNING so there is something in result.rows[0]
+  
       'DELETE FROM users WHERE username = $1 RETURNING username',
       [username]
     );
